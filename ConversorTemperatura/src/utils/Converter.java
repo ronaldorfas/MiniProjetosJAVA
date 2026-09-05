@@ -1,27 +1,33 @@
 package utils;
 
 public class Converter {
-    public static double ZERO_ABSOLUTE_KELVIN = 0;
-    public static double ZERO_ABSOLUTE_CELSIUS = -273;
-    public static double ZERO_ABSOLUTE_FAHRENHEIT = -459;
+    public static final double ZERO_ABSOLUTO_KELVIN = 0;
+    public static final double ZERO_ABSOLUTO_CELSIUS = -273;
+    public static final double ZERO_ABSOLUTO_FAHRENHEIT = -459;
 
-
-    public static double celsiusToFahrenheit(double celsius) {
-        if (celsius<ZERO_ABSOLUTE_CELSIUS)
+    public static double celsiusToFahrenheit(double c){
+        if(c<ZERO_ABSOLUTO_CELSIUS)
             throw new IllegalArgumentException("Valor abaixo do zero absoluto");
-        
-        return (celsius * 9 / 5) + 32;
+
+        return c/5*9+32;
     }
 
-    public static double fahrenheitToKelvin(double fahrenheit) {
-        return (fahrenheit - 32) * 5 / 9 + ZERO_ABSOLUTE_KELVIN;
+    public static double fahrenheitToKelvin(double f){
+        if(f<ZERO_ABSOLUTO_FAHRENHEIT)
+            throw new IllegalArgumentException("Valor abaixo do zero absoluto");
+
+        return (f-32)/9*5+273;
     }
 
-    public static double celsiusToKelvin(double celsius) {
-        return celsius - ZERO_ABSOLUTE_CELSIUS;
+    public static double kelvinToCelsius(double k){
+        if(k<ZERO_ABSOLUTO_KELVIN)
+            throw new IllegalArgumentException("Valor abaixo do zero absoluto");
+
+        return k-273;
     }
 
-    public static double kelvinToCelsius(double kelvin) {
-        return kelvin + ZERO_ABSOLUTE_CELSIUS;
+    public static double celsiusToKelvin(double c){
+        return fahrenheitToKelvin(celsiusToFahrenheit(c));
     }
+
 }
